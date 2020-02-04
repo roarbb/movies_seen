@@ -1,6 +1,6 @@
 # Movies I've seen
 
-... is little database app filled with movies I watched over the years.
+... is small database app filled with movies I watched over the years.
 
 ## Tech Used
 * React
