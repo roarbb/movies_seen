@@ -4,7 +4,7 @@ import { from } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import styled from 'styled-components';
 
-import myFirestore from '../firestore';
+import myFirestore from '../../firestore';
 
 const Movie = styled.div`
   color: ${({theme}) => theme.pink};

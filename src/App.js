@@ -3,16 +3,13 @@ import { ThemeProvider, createGlobalStyle } from 'styled-components';
 import {
   BrowserRouter as Router,
   Switch,
-  Route,
-  Link
+  Route
 } from "react-router-dom";
 
-import MovieList from './components/movieList';
-
-const theme = {
-  backgroundColor: "#f5f6f7",
-  pink: "hotpink",
-}
+import { theme } from './styles';
+import Button from './components/atoms/Button';
+import Layout from './components/templates/Layout';
+import MovieList from './components/molecules/MovieList';
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -21,6 +18,10 @@ const GlobalStyle = createGlobalStyle`
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
       'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
       sans-serif;
+  }
+
+  * {
+    box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
@@ -31,33 +32,17 @@ function App() {
     <ThemeProvider theme={theme}>
       <GlobalStyle />
       <Router>
-        <div>
-          <nav>
-            <ul>
-              <li>
-                <Link to="/">Home</Link>
-              </li>
-              <li>
-                <Link to="/admin">Admin</Link>
-              </li>
-              <li>
-                <Link to="/movies">Movies</Link>
-              </li>
-            </ul>
-          </nav>
-
-          <Switch>
-            <Route path="/admin">
-              <div>Admin</div>
-            </Route>
-            <Route path="/movies">
-              <MovieList />
-            </Route>
-            <Route path="/">
-              <div>Home</div>
-            </Route>
-          </Switch>
-        </div>
+        <Switch>
+          <Route path="/admin">
+            <Layout><Button>Log in</Button></Layout>
+          </Route>
+          <Route path="/movies">
+            <Layout><MovieList /></Layout>
+          </Route>
+          <Route path="/">
+            <Layout>Home</Layout>
+          </Route>
+        </Switch>
       </Router>
     </ThemeProvider>
   );
