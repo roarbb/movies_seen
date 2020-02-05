@@ -1,6 +1,7 @@
 import React from 'react';
-import Navigation from '../molecules/Navigation';
 import styled from 'styled-components';
+
+// import Navigation from '../molecules/Navigation';
 
 const Container = styled.div`
   width: 960px;
@@ -15,7 +16,7 @@ const Container = styled.div`
 const Layout = ({children}) => {
   return (
     <Container>
-      <Navigation />
+      {/* <Navigation /> */}
       {children}
     </Container>
   );

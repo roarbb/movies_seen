@@ -7,7 +7,7 @@ import styled from 'styled-components';
 import myFirestore from '../../firestore';
 
 const Movie = styled.div`
-  color: ${({theme}) => theme.pink};
+  padding: 5px 0;
 `;
 
 function MovieList() {
