@@ -7,9 +7,9 @@ import {
 } from "react-router-dom";
 
 import { theme } from './styles';
-import Button from './components/atoms/Button';
 import Layout from './components/templates/Layout';
 import MovieList from './components/molecules/MovieList';
+import MovieSearch from './components/molecules/MovieSearch';
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -33,7 +33,7 @@ function App() {
       <Router>
         <Switch>
           <Route path="/admin">
-            <Layout><Button>Log in</Button></Layout>
+            <Layout><MovieSearch /></Layout>
           </Route>
           <Route path="/movies">
             <Layout><MovieList /></Layout>
