@@ -8,8 +8,9 @@ import {
 
 import { theme } from './styles';
 import Layout from './components/templates/Layout';
+import Blank from './components/templates/Blank';
 import MovieList from './components/molecules/MovieList';
-import MovieSearch from './components/molecules/MovieSearch';
+import MovieSearch from './components/organisms/MovieSearch';
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -33,7 +34,7 @@ function App() {
       <Router>
         <Switch>
           <Route path="/admin">
-            <Layout><MovieSearch /></Layout>
+            <Blank><MovieSearch /></Blank>
           </Route>
           <Route path="/movies">
             <Layout><MovieList /></Layout>
