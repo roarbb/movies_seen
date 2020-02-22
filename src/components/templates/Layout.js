@@ -4,7 +4,7 @@ import styled from 'styled-components';
 // import Navigation from '../molecules/Navigation';
 
 const Container = styled.div`
-  width: 960px;
+  max-width: 960px;
   position: relative;
   top: 20px;
   margin: 0 auto;
@@ -13,9 +13,9 @@ const Container = styled.div`
   box-shadow: ${({theme}) => theme.shadow};
 `;
 
-const Layout = ({children}) => {
+const Layout = ({children, ...props}) => {
   return (
-    <Container>
+    <Container {...props}>
       {/* <Navigation /> */}
       {children}
     </Container>

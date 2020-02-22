@@ -1,15 +1,19 @@
 import React from 'react';
+import styled from 'styled-components';
+
+import MovieCard from './MovieCard';
+
+const MovieList = styled.div`
+  display: grid;
+  grid-gap: 30px;
+  margin: 20px 0;
+`;
 
 const MovieResults = ({ movies }) => {
   return (
-    <div>{movies.map(movie => <div key={movie.imdbID}>
-      <div>{movie.Title}</div>
-      {movie.Poster !== "N/A" &&
-        <img src={movie.Poster} alt={`${movie.Title} poster`} height="200" />
-      }
-      <br />
-      <br />
-    </div>)}</div>
+    <MovieList>
+      {movies.map(movie => <MovieCard key={movie.id} movie={movie} />)}
+    </MovieList>
   );
 };
 
