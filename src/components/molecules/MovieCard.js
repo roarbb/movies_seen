@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 import Box from '../atoms/Box';
@@ -10,10 +10,12 @@ const StyledBox = styled(Box)`
   grid-auto-flow: column;
   grid-template-columns: auto 1fr;
   grid-gap: 20px;
-`;
+  height: 170px;
+  transition: all .2s;
 
-const Content = styled.div`
-  /* justify-content: start; */
+  ${({ expanded }) => !!expanded && `
+    height: 100%;
+  `}
 `;
 
 const MovieTitle = styled.h2`
@@ -33,11 +35,11 @@ const Overview = styled.div`
   -webkit-mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
   mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
 
-  &:hover {
-    height: initial;
+  ${({ expanded }) => !!expanded && `
+    height: 100%;
     -webkit-mask-image: none;
     mask-image: none;
-  }
+  `}
 `;
 
 const Votes = styled.span`
@@ -48,31 +50,35 @@ const Votes = styled.span`
 `;
 
 const MovieCard = ({ movie, className }) => {
-  console.log('🌺🌺 movie', movie);
-
   const tmbdImageBaseUrl = process.env.REACT_APP_TMDB_IMAGE_BASE_URL;
   const imageUrl = `${tmbdImageBaseUrl}/w342/${movie.poster_path}`;
+  const [expanded, setExpanded] = useState(false);
 
   return (
-    <StyledBox className={className}>
+    <StyledBox
+      className={className}
+      onMouseEnter={() => setExpanded(true)}
+      onMouseLeave={() => setExpanded(false)}
+      expanded={expanded}
+    >
       {!!movie.poster_path ?
-        <ImageWrapper>
+        <ImageWrapper expanded={expanded}>
           <img src={imageUrl} alt={`${movie.title} poster`} />
         </ImageWrapper>
         : <Placeholder />
       }
-      <Content>
+      <section>
         <div>
           <MovieTitle>{movie.title}</MovieTitle>
           {!!movie.release_date &&
             <Year>{` (${movie.release_date.substr(0, 4)})`}</Year>
           }
         </div>
-        <Overview>
+        <Overview expanded={expanded}>
           {!!movie.vote_count && <Votes>{movie.vote_average}/10</Votes>}
           {movie.overview}
         </Overview>
-      </Content>
+      </section>
     </StyledBox>
   );
 };

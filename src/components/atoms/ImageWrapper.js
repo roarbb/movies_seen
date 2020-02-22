@@ -3,14 +3,10 @@ import styled from 'styled-components';
 
 const Wrapper = styled.div`
   width: 150px;
-  height: 150px;
+  height: ${({expanded}) => !!expanded ? `100%` : `150px`};
   border-radius: ${({theme}) => theme.radius};
   overflow: hidden;
   transition: height .2s;
-
-  &:hover {
-    height: 100%;
-  }
 
   & > img {
     object-fit: cover;
@@ -19,9 +15,9 @@ const Wrapper = styled.div`
   }
 `;
 
-const ImageWrapper = ({children}) => {
+const ImageWrapper = ({children, expanded = false}) => {
   return (
-    <Wrapper>
+    <Wrapper expanded={expanded}>
       {children}
     </Wrapper>
   );
